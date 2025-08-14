@@ -88,6 +88,31 @@ public class CalculadoraTest {
     }
 
     // ═══════════════════════════════════════════════════════════════
+    //                        TESTS DE DIVISIÓN
+    // ═══════════════════════════════════════════════════════════════
+
+    @Test
+    @DisplayName("División de números positivos")
+    void testDividirPositivos() {
+        log.info("🧮 Probando división positivos: 10 ÷ 2 = 5.0");
+        double resultado = calculadora.dividir(10, 2);
+        log.info("📊 Esperado: 5.0, Obtenido: {}", resultado);
+        Assertions.assertEquals(5.0, resultado, "La división de 10 ÷ 2 debe ser 5.0");
+    }
+
+    @Test
+    @DisplayName("División por cero (debe lanzar ArithmeticException)")
+    void testDividirPorCero() {
+        log.info("⚠️ Probando división por cero (debe lanzar ArithmeticException)");
+        ArithmeticException exception = Assertions.assertThrows(
+            ArithmeticException.class,
+            () -> calculadora.dividir(10, 0),
+            "Debe lanzar ArithmeticException cuando divisor = 0"
+        );
+        log.info("✅ Excepción capturada correctamente: {}", exception.getMessage());
+    }
+
+    // ═══════════════════════════════════════════════════════════════
     //                       TESTS DE PORCENTAJE
     // ═══════════════════════════════════════════════════════════════
 
